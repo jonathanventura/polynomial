@@ -17,7 +17,7 @@ namespace Polynomial
      * The coefficients are stored in this order:
      * c0 x^deg + c1 x^(deg-1) + ...
      *
-     * A dynamically-sized version is available by using Polynomial<Eigen::Dynamic> .
+     * A dynamically-sized version is available: Polynomial<Eigen::Dynamic>
      *
      * Note that the static and dynamic versions should not be mixed, i.e. do not add a dynamic polynomial to a static one.
      */

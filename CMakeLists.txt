@@ -13,9 +13,8 @@ project( Polynomial )
 find_package( Eigen3 REQUIRED )
 include_directories( ${EIGEN3_INCLUDE_DIR} )
 
-include_directories( /usr/local/include )
-
 include_directories( $(Polynomial) )
 
 add_executable( testpolynomial Polynomial/Polynomial.hpp Polynomial/PolynomialInternal.hpp testpolynomial.cpp )
 
+install( DIRECTORY Polynomial/ DESTINATION ${CMAKE_INSTALL_PREFIX}/include/Polynomial )
