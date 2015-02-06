@@ -377,7 +377,7 @@ namespace Polynomial
                     {
                         root_intervals.push_back( RootInterval(interval.lb,interval.ub) );
                     }
-                    else
+                    else if ( fabs(interval.ub-interval.lb)>1e-15 )
                     {
                         double m = (interval.lb+interval.ub)*0.5;
                         
@@ -470,7 +470,7 @@ namespace Polynomial
                     {
                         root_intervals.push_back( RootInterval(interval.lb,interval.ub) );
                     }
-                    else
+                    else if ( fabs(interval.ub-interval.lb)>1e-15 )
                     {
                         double m = (interval.lb+interval.ub)*0.5;
                         

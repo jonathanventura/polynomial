@@ -38,10 +38,16 @@ namespace Polynomial
 
         }
         
-        Polynomial(const Polynomial<deg> &polyin)
+        Polynomial( const Polynomial<deg> &polyin )
         : coef( polyin.coef )
         {
 
+        }
+        
+        Polynomial( const double *coefin )
+        : coef( Internal::vecmap<deg+1>( coefin ) )
+        {
+            
         }
         
         const Eigen::Matrix<double,deg+1,1> &coefficients() const
@@ -58,8 +64,8 @@ namespace Polynomial
         Polynomial<Internal::max<degin,deg>::value> operator+(const Polynomial<degin> &poly) const
         {
             Polynomial<Internal::max<degin,deg>::value> p;
-            p.coef.tail(degin+1) = poly.coefficients();
-            p.coef.tail(deg+1) += coef;
+            p.coefficients().tail(degin+1) = poly.coefficients();
+            p.coefficients().tail(deg+1) += coef;
             return p;
         }
         
@@ -67,8 +73,8 @@ namespace Polynomial
         Polynomial<Internal::max<degin,deg>::value> operator-(const Polynomial<degin> &poly) const
         {
             Polynomial<Internal::max<degin,deg>::value> p;
-            p.coef.tail(deg+1) = coef;
-            p.coef.tail(degin+1) -= poly.coefficients();
+            p.coefficients().tail(deg+1) = coef;
+            p.coefficients().tail(degin+1) -= poly.coefficients();
             return p;
         }
         
