@@ -17,5 +17,5 @@ include_directories( /usr/local/include )
 
 include_directories( $(Polynomial) )
 
-add_executable( testpolynomial testpolynomial.cpp )
+add_executable( testpolynomial Polynomial/Polynomial.hpp Polynomial/PolynomialInternal.hpp testpolynomial.cpp )
 
