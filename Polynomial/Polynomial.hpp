@@ -100,13 +100,9 @@ namespace Polynomial
         {
             if ( coef[0] == 0 )
             {
-                Eigen::PolynomialSolver<double,deg-1> ps;
-                ps.compute(coef.tail(deg).reverse());
-                ps.realRoots(roots);
+                Internal::RootFinder<deg-1>::compute(coef.tail(deg),roots);
             } else {
-                Eigen::PolynomialSolver<double,deg> ps;
-                ps.compute(coef.reverse());
-                ps.realRoots(roots);
+                Internal::RootFinder<deg>::compute(coef,roots);
             }
         }
         
@@ -209,13 +205,9 @@ namespace Polynomial
             if ( coef[0] == 0 )
             {
                 int deg = coef.rows()-1;
-                Eigen::PolynomialSolver<double,Eigen::Dynamic> ps;
-                ps.compute(coef.tail(deg).reverse());
-                ps.realRoots(roots);
+                Internal::RootFinder<Eigen::Dynamic>::compute(coef.tail(deg),roots);
             } else {
-                Eigen::PolynomialSolver<double,Eigen::Dynamic> ps;
-                ps.compute(coef.reverse());
-                ps.realRoots(roots);
+                Internal::RootFinder<Eigen::Dynamic>::compute(coef,roots);
             }
         }
         

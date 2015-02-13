@@ -524,6 +524,54 @@ namespace Polynomial
             }
         };
 
+        template<int deg>
+        struct RootFinder
+        {
+            static void compute( const Eigen::Matrix<double,deg+1,1> &p, std::vector<double> &roots )
+            {
+                Eigen::PolynomialSolver<double,deg> ps;
+                ps.compute(p.reverse());
+                ps.realRoots(roots);
+            }
+        };
+
+        template<>
+        struct RootFinder<Eigen::Dynamic>
+        {
+            static void compute( const Eigen::Matrix<double,Eigen::Dynamic,1> &p, std::vector<double> &roots )
+            {
+                Eigen::PolynomialSolver<double,Eigen::Dynamic> ps;
+                ps.compute(p.reverse());
+                ps.realRoots(roots);
+            }
+        };
+        
+        template<>
+        struct RootFinder<2>
+        {
+            static void compute( const Eigen::Matrix<double,3,1> &p, std::vector<double> &roots )
+            {
+                const double discrim = p[1]*p[1] - 4.*p[0]*p[2];
+                if ( discrim < 0 )
+                {
+                    roots.clear();
+                }
+                else if ( discrim == 0 )
+                {
+                    roots.resize(1);
+                    roots[0] = -p[1] / ( 2. * p[0] );
+                }
+                else
+                {
+                    const double twoa = 2. * p[0];
+                    const double sqrt_discrim = sqrt(discrim);
+                    roots.resize(2);
+                    roots[0] = (-p[1] + sqrt_discrim) / twoa;
+                    roots[1] = (-p[1] - sqrt_discrim) / twoa;
+                }
+            }
+        };
+
     } // end namespace Internal
     
 } // end namespace Polynomial

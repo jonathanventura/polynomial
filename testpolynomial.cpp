@@ -20,7 +20,8 @@ int main( int argc, char **argv )
     std::cout << (a*b).coefficients().transpose() << "\n";
 
     std::cout << a.eval(5.f) << "\n";
-
+    
+    
     Eigen::VectorXd adcoeffs(6);
     adcoeffs << 1,2,3,4,5,6;
     Polynomial<Eigen::Dynamic> ad( adcoeffs );
@@ -34,7 +35,27 @@ int main( int argc, char **argv )
     std::cout << (ad*bd).coefficients().transpose() << "\n";
     
     std::cout << ad.eval(5.f) << "\n";
+    
+    Eigen::Matrix<double,5,1> ccoeffs;
+    ccoeffs <<    -0.8049,    -0.4430,    0.0938,    0.9150,    0.9298;
+    Polynomial<4> c(ccoeffs);
+    
+    std::vector<double> roots;
+    c.realRoots(roots);
+    std::cout << "companion matrix:\n";
+    for ( int i = 0; i < roots.size(); i++ ) std::cout << roots[i] << "\n";
 
+    double lb,ub;
+    c.rootBounds(lb,ub);
+    std::cout << "root bounds: " << lb << "  " << ub << "\n";
+
+    roots.clear();
+    c.realRootsSturm(lb,ub,roots);
+    std::cout << "sturm:\n";
+    for ( int i = 0; i < roots.size(); i++ ) std::cout << roots[i] << "\n";
+
+    exit(0);
+    
     Eigen::Matrix<double,21,1> coef;
     
     FILE *f = fopen("/Users/jventura/code/solverlib/data/polydata.dat","r");
@@ -47,11 +68,10 @@ int main( int argc, char **argv )
     Eigen::VectorXd coefd( coef );
     Polynomial<Eigen::Dynamic> polyd( coef );
 
-    double lb,ub;
     poly.rootBounds(lb,ub);
     std::cout << "root bounds: " << lb << "  " << ub << "\n";
     
-    std::vector<double> roots;
+    roots.clear();
     poly.realRoots(roots);
     std::cout << "companion matrix:\n";
     for ( int i = 0; i < roots.size(); i++ ) std::cout << roots[i] << "\n";
