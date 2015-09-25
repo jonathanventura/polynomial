@@ -34,7 +34,9 @@ Usage Example
 Todo
 ----
 
-Allow for adjustable precision (number of bisections) in Sturm sequences root finding.
+Allow for choice of float or double.
+
+Allow for adjustable number of bisections in Sturm sequences root finding (determines precision).
 
 Improve the computation of lower and upper root bounds.
 
