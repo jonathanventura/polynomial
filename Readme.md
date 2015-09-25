@@ -11,7 +11,7 @@ Dependencies
 Polynomial depends on the [Eigen](http://eigen.tuxfamily.org/) linear algebra package.
 
 Usage Example
-=============
+-------------
 
     #include <Polynomial/Polynomial.hpp>
 
@@ -27,9 +27,10 @@ Usage Example
     std::vector<double> roots = c.realRoots();
     
 License
-=======
+-------
 
 Copyright (c) 2015, Jonathan Ventura
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
