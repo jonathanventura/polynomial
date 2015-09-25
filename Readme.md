@@ -23,7 +23,7 @@ Usage Example
     bcoeffs << 1,2,3,4,5;
     Polynomial<4> b( bcoeffs );
 
-    Polynomial<9> c = a+b;
+    Polynomial<9> c = a*b;
     std::vector<double> roots = c.realRoots();
     
 License
