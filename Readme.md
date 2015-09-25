@@ -25,7 +25,16 @@ Usage Example
 
     Polynomial<9> c = a*b;
     std::vector<double> roots = c.realRoots();
-    
+
+Todo
+----
+
+Allow for adjustable precision (number of bisections) in Sturm sequences root finding.
+
+Improve the computation of lower and upper root bounds.
+
+Add support for lazy evaluation as in the Eigen library.
+
 License
 -------
 
