@@ -10,6 +10,11 @@ Dependencies
 
 Polynomial depends on the [Eigen](http://eigen.tuxfamily.org/) linear algebra package.
 
+Install
+-------
+
+Polynomial is a pure template library so no compilation is needed.  However, a CMake file is provided for installing the headers and compiling the test program.
+
 Usage Example
 -------------
 
