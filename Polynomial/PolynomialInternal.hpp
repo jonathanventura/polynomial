@@ -200,7 +200,7 @@ namespace Polynomial
                 double b = upper;
                 double c = 0.5*(a+b);
                 
-                for ( int i = 0; i < 24; i++ )
+                for ( int i = 0; i < 100; i++ )
                 {
                     const double fc = PolyVal<Eigen::Dynamic>::compute(coef,c);
                     const char fcpos = (fc>0);
