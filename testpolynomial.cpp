@@ -3,7 +3,7 @@
 
 #include <Polynomial/Polynomial.hpp>
 
-using Polynomial::Polynomial;
+using polynomial::Polynomial;
 
 int main( int argc, char **argv )
 {

@@ -19,6 +19,7 @@ Usage Example
 -------------
 
     #include <Polynomial/Polynomial.hpp>
+    using polynomial::Polynomial;
 
     Eigen::Matrix<double,6,1> acoeffs;
     acoeffs << 1,2,3,4,5,6;

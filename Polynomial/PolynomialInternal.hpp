@@ -18,7 +18,7 @@
 #include <vector>
 #include <queue>
 
-namespace Polynomial
+namespace polynomial
 {
     namespace Internal
     {

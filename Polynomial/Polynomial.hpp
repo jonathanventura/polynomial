@@ -20,7 +20,7 @@
 
 #include <Polynomial/PolynomialInternal.hpp>
 
-namespace Polynomial
+namespace polynomial
 {
     /**
      * Polynomial
