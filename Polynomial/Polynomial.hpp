@@ -119,7 +119,7 @@ namespace polynomial
         Polynomial<deg-1> derivative() const
         {
             Eigen::Matrix<double,deg,1> deriv_coef;
-            for (auto i = 0; i < deg; ++i)
+            for (int i = 0; i < deg; ++i)
             {
                 deriv_coef(i) = coef(i) * (deg - i);
             }
@@ -249,7 +249,7 @@ namespace polynomial
         {
             Eigen::VectorXd deriv_coef;
             deriv_coef.resize(coef.rows()-1);
-            for (auto i = 0; i+1 < coef.rows(); ++i)
+            for (int i = 0; i+1 < coef.rows(); ++i)
             {
                 deriv_coef(i) = coef(i)*(coef.rows()-1-i);
             }
