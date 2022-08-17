@@ -106,6 +106,26 @@ namespace polynomial
             return Polynomial<deg>(coef*c);
         }
         
+        friend Polynomial<deg> operator*(const double c, const Polynomial<deg>& poly)
+        {
+            return Polynomial<deg>(poly.coef*c);
+        }
+
+        Polynomial<deg> operator/(const double c) const
+        {
+            return Polynomial<deg>(coef/c);
+        }
+
+        Polynomial<deg-1> derivative() const
+        {
+            Eigen::Matrix<double,deg,1> deriv_coef;
+            for (auto i = 0; i < deg; ++i)
+            {
+                deriv_coef(i) = coef(i) * (deg - i);
+            }
+            return Polynomial<deg-1>(deriv_coef);
+        }
+
         double eval(double x) const
         {
             return Internal::PolyVal<deg>::compute(coef,x);
@@ -148,7 +168,7 @@ namespace polynomial
     {
         Eigen::VectorXd coef;
     public:
-        Polynomial(const int deg)
+        Polynomial(const int deg = 0)
         : coef( Eigen::VectorXd::Zero(deg+1) )
         {
             
@@ -210,11 +230,32 @@ namespace polynomial
             return Polynomial<Eigen::Dynamic>(coef*c);
         }
         
+        friend Polynomial<Eigen::Dynamic> operator*(const double c, const Polynomial<Eigen::Dynamic>& poly)
+        {
+            return Polynomial<Eigen::Dynamic>(poly.coef*c);
+        }
+
+        Polynomial<Eigen::Dynamic> operator/(const double c) const
+        {
+            return Polynomial<Eigen::Dynamic>(coef/c);
+        }
+
         double eval(double x) const
         {
             return Internal::PolyVal<Eigen::Dynamic>::compute(coef,x);
         }
         
+        Polynomial<Eigen::Dynamic> derivative() const
+        {
+            Eigen::VectorXd deriv_coef;
+            deriv_coef.resize(coef.rows()-1);
+            for (auto i = 0; i+1 < coef.rows(); ++i)
+            {
+                deriv_coef(i) = coef(i)*(coef.rows()-1-i);
+            }
+            return Polynomial<Eigen::Dynamic>(deriv_coef);
+        }
+
         void realRoots(std::vector<double> &roots) const
         {
             if ( coef[0] == 0 )
