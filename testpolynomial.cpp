@@ -70,7 +70,10 @@ int main( int argc, char **argv )
     c.realRootsSturm(lb,ub,roots);
     std::cout << "roots using sturm sequences:\n";
     for ( int i = 0; i < roots.size(); i++ ) std::cout << "c(" << roots[i] << "): " << c.eval(roots[i]) << "\n";
-    
+
+    Polynomial<3> cder = c.derivative();
+	std::cout << "derivative of c: [" << cder.coefficients().transpose() << "]\n";
+
     std::cout << "\n";
 
     std::cout << "*** Dynamically-sized polynomial roots test ***\n";
@@ -93,6 +96,9 @@ int main( int argc, char **argv )
     cd.realRootsSturm(lb,ub,roots);
     std::cout << "roots using sturm sequences:\n";
     for ( int i = 0; i < roots.size(); i++ ) std::cout << "c(" << roots[i] << "): " << c.eval(roots[i]) << "\n";
+
+	Polynomial<Eigen::Dynamic> cdder = cd.derivative();
+	std::cout << "derivative of c: [" << cdder.coefficients().transpose() << "]\n";
 
     return 0;
 }
